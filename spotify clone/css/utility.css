@@ -1,0 +1,18 @@
+.border{
+    border: 2px solid darkred;
+   
+   
+}
+.flex{
+    display: flex;
+}
+.m-1{
+    margin: 10px;
+
+}
+.bg-grey{
+background-color: #121212;
+}
+.invert{
+    filter: invert( 1);
+}
