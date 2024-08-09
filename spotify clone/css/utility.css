@@ -1,5 +1,5 @@
 .border{
-    border: 2px solid darkred;
+    border: 1px solid rgb(170, 27, 27);
    
    
 }
@@ -16,3 +16,8 @@ background-color: #121212;
 .invert{
     filter: invert( 1);
 }
+.radius{
+    border: 1px solid transparent ;
+    border-radius: 15px;
+}
+

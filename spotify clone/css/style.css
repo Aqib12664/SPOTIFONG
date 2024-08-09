@@ -11,20 +11,30 @@ body{
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-style: normal;
+    /* overflow-y: hidden; */
+    padding-left: 8px;
   }
 
+.container{
+    gap: 5px;
+}
 .left{
     width: 32vw;
     padding: 4px 2px;
+
    
 }
 .right{
     width: 68vw;
+    margin-top: 8px;
+    
 }
 /* HOME LEFT */
 .home{
     padding: 20px;
     margin: 3px 2px;
+    
+    margin-bottom: 7px;
 }
 .logo{
     filter: invert(1);
@@ -39,19 +49,165 @@ body{
     padding-top: 20px;
     align-items: center;
     font-size: 16px;
+    transition: 0.4s ease-in-out;
+    color:#b3aaaa ;
 
 
 }
+.home ul li:hover{
+ color: white;
+ cursor: pointer;
+
+}
+
 /* Library left */
+
+
 .heading img {
-    width: 35px;
+    width: 30px;
 
 }
 .heading {
     gap:12px ;
-    width: 100%;
+    width: 96%;
     padding-top: 14px;
+    padding-left: 14px;
+    padding-bottom: 2px;
     font-weight: bold;
     align-items: center;
-    margin: 5px;
+    margin:  5px;
 }
+.heading h2 {
+    font-size: 23px;
+    color: #b3aaaa;
+    transition: 0.4s ease-in-out;
+}
+.heading h2:hover {
+    font-size: 23px;
+    color: white;
+    cursor: pointer;
+    
+}
+.footer{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 11.5px;
+    position: absolute;
+    bottom: 200px;
+   margin-left: 10px;
+    
+}
+.library{
+    min-height: 78vh;
+   position: relative;
+
+}
+.footer a{
+   
+    text-decoration: none;
+    color:#b3aaaa ;
+    
+    transition: 0.2s ease-in-out;
+}
+.footer span{
+    margin-right: 35px;
+}
+.footer a:hover{
+color: white;   
+   cursor: pointer;
+}
+.lang{
+    position: absolute;
+    bottom: 100px;
+ 
+}
+.lang button{
+    background-color: black;
+    color: white;
+    border: 2px solid #b3aaaa;
+    border-radius: 50px;
+    padding: 3px 18px 3px 18px;
+    margin-left: 12px;
+    font-weight: 700;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    
+}
+.lang button:hover{
+    transform: scale(1.09);
+    border: 1px solid var(--essential-base, #000000);
+    border: 2px solid white;
+    
+    
+    
+}
+.lang-btn{
+    gap: 8px;
+}
+.globe{
+    width: 22px;
+}
+.header
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    background-color:rgb(15,15, 15,0.9);
+}
+.arrow
+{
+  display: flex;
+  gap: 18px;
+}
+.arrow svg:hover
+{
+   
+ transform: scale(1.09);
+}
+.buttons
+{
+    display: flex;
+    gap: 25px;
+}
+.log
+{
+    background-color: white;
+    color: #000000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 12px 29px 12px 29px;
+    border-radius: 56px;
+    border: none;
+}
+.log:hover
+{
+    transform: scale(1.08);
+    cursor: pointer;
+    
+   
+}
+
+.sign
+{
+    background:none;
+    color: #b3aaaa;
+    border: none;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+.sign:hover
+{
+    transform: scale(1.09);
+  
+    color: var(--text-base, #ffffff);
+    cursor: pointer;
+}
+    
