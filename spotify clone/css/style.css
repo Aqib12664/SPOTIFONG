@@ -12,7 +12,8 @@ body {
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-style: normal;
-    /* overflow-y: hidden; */
+     /* overflow-y: hidden;
+    overflow-x: hidden;  */
     padding-left: 8px;
 }
 
@@ -21,7 +22,7 @@ body {
 }
 
 .left {
-    width: 32vw;
+    width: 30vw;
     padding: 4px 2px;
 
 
@@ -30,6 +31,10 @@ body {
 .right {
     width: 68vw;
     margin-top: 8px;
+    position: relative;
+    max-height: 100vh;
+    
+   
 
 
 
@@ -179,6 +184,8 @@ body {
     background-color: rgba(12, 11, 11, 0.9);
     position: sticky;
     top: 0;
+    z-index: 1000;
+    opacity: 10000000000;
     margin-bottom: 12px;
 }
 
@@ -261,7 +268,7 @@ body {
     width: 140px;
     height: 220px;
     /* border: 2px solid red; */
-    padding: 12px;
+    padding: 10px;
     gap: 2px;
     display: flex;
     flex-direction: column;
@@ -331,7 +338,30 @@ body {
 .cardcontainer {
     margin: 20px 8px;
     display: flex;
-    gap: 10px;
+    gap: 3px;
     flex-wrap: wrap;
+    overflow-y: scroll;
+    scrollbar-width:thin;
+    scrollbar-color: #555 #2c2c2c;
+    max-height: 70vh;
+    
 }
 
+
+.playbar
+{
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    background-color: rgb(83, 177, 83);
+    width: 100%;
+    padding: 12px;
+}
+.songbuttons
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+}
