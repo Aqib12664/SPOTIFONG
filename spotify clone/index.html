@@ -2,117 +2,107 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotifong - Web Player: Music for everyone</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/utility.css">
-
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotifong - Web Player: Music for everyone</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="css/new.css" />
+  <link rel="stylesheet" href="css/utility.css" />
 </head>
 
 <body>
-    <div class="container flex">
-        <div class="left  ">
-            <div class="home bg-grey radius ">
-                <img src="img/logo.svg" alt="logo" class="logo invert">
-                <ul>
-                    <li><img src="img/home.svg" alt="home" class="invert">Home</li>
-                    <li><img src="img/search.svg" alt="Search" class="invert search">Search</li>
-                </ul>
+  <main class="main">
+    <aside class="sidebar left">
+      <nav class="home bg-grey radius">
+        <img src="img/logo.svg" alt="logo" class="logo invert" />
+        <ul>
+          <li><img src="img/home.svg" alt="home" class="invert" />Home</li>
+          <li>
+            <img src="img/search.svg" alt="Search" class="invert search" />Search
+          </li>
+        </ul>
+      </nav>
 
-            </div>
-            <div class="library bg-grey radius">
-                <div class="heading flex">
-                    <img src="img/playlist.svg" alt="playlist" class="invert">
-                    <h2> Your Library</h2>
-
-                </div>
-                <div class="footer">
-                    <div><a href="https://www.spotify.com/jp/legal/" target="_blank"><span>Legal</span></a></div>
-                    <div><a href="https://www.spotify.com/jp/privacy/" target="_blank"><span>Privacy Center</span></a>
-                    </div>
-                    <div><a href="https://www.spotify.com/jp/legal/privacy-policy/" target="_blank"><span>Privacy
-                                Policy</span></a>
-                    </div>
-                    <div><a href="https://www.spotify.com/jp/legal/cookies-policy/"
-                            target="_blank"><span>Cookies</span></a></div>
-                    <div><a href="https://www.spotify.com/jp/legal/privacy-policy/#s3" target="_blank"><span>About
-                                Ads</span></a></div>
-                    <div><a href="https://www.spotify.com/jp/accessibility/"
-                            target="_blank"><span>Accessibility</span></a></div>
-                </div>
-                <div class="lang ">
-                    <button class="lang-btn flex"><img src="img/globe (1).png" alt=""
-                            class="globe invert">English</button>
-                </div>
-            </div>
+      <div class="library bg-grey radius">
+        <div class="heading flex">
+          <img src="img/playlist.svg" alt="playlist" class="invert" />
+          <h2>Your Library</h2>
         </div>
-        <div class="right  bg-grey radius ">
-            <div class="header flex">
-                <div class="arrow">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff"
-                        fill="none">
-                        <path d="M17 4L8.66943 10.0405C6.44352 11.6545 6.44353 12.3455 8.66943 13.9595L17 20"
-                            stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff"
-                        fill="none">
-                        <path d="M7 4L15.3306 10.0405C17.5565 11.6545 17.5565 12.3455 15.3306 13.9595L7 20"
-                            stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </div>
-                <div class="buttons">
-                    <button class="sign">Sign up</button>
-                    <button class="log">Login</button>
-                </div>
+        <div class="songlist">
+          <ul>
+          </ul>
 
-            </div>
-            <div class="playlist">
-                <h1>Spotify Playlists</h1>
-                <div class="cardcontainer flex">
-                    <div class="card">
-                        <img src="img/cover.jpg" alt="">
-                        <h2>Happy Hits</h2>
-                        <p>Hits to boost your mood and fill you with happiness!</p>
-                        <div class="play">
-                            <svg width="24px" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="12" fill="#00FF00" />
-                                <path d="M9 16V8L15 12L9 16Z" fill="#000000" stroke="#000000" stroke-width="1.5"
-                                    stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="img/cover.jpg" alt="">
-                        <h2>Happy Hits</h2>
-                        <p>Hits to boost your mood and fill you with happiness!</p>
-                        <div class="play">
-                            <svg width="24px" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="12" fill="#00FF00" />
-                                <path d="M9 16V8L15 12L9 16Z" fill="#000000" stroke="#000000" stroke-width="1.5"
-                                    stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="playbar">
-                    <div class="songinfo"></div>
-                    <div class="songbuttons">
-                        <img src="img/prevsong.svg" alt="" class="invert">
-                        <img src="img/play.svg" alt="" class="invert">
-                        <img src="img/nextsong.svg" alt="" class="invert">
-                    </div>
-                    <div class="songtime"></div>
-                </div>
-            </div>
+      </div>
+
+        <div class="lang">
+          <button class="lang-btn flex">
+            <img src="img/globe (1).png" alt="" class="globe invert" />English
+          </button>
         </div>
+      </div>
+    </aside>
+    <section class="right bg-grey radius">
+      <div class="header flex">
+        <div class="arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff"
+            fill="none">
+            <path d="M17 4L8.66943 10.0405C6.44352 11.6545 6.44353 12.3455 8.66943 13.9595L17 20" stroke="#ffffff"
+              stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff"
+            fill="none">
+            <path d="M7 4L15.3306 10.0405C17.5565 11.6545 17.5565 12.3455 15.3306 13.9595L7 20" stroke="#ffffff"
+              stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="buttons">
+          <button class="sign">Sign up</button>
+          <button class="log">Login</button>
+        </div>
+      </div>
+      <div class="playlist">
+        <h1>Spotify Playlists</h1>
+        <div class="cardcontainer flex">
+          <div class="card">
+            <img src="img/cover.jpg" alt="" />
+            <h2>Happy Hits</h2>
+            <p>Hits to boost your mood and fill you with happiness!</p>
+            <div class="play">
+              <svg width="24px" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="12" fill="#00FF00" />
+                <path d="M9 16V8L15 12L9 16Z" fill="#000000" stroke="#000000" stroke-width="1.5"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <div class="card">
+            <img src="img/cover.jpg" alt="" />
+            <h2>Happy Hits</h2>
+            <p>Hits to boost your mood and fill you with happiness!</p>
+            <div class="play">
+              <svg width="24px" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="12" fill="#00FF00" />
+                <path d="M9 16V8L15 12L9 16Z" fill="#000000" stroke="#000000" stroke-width="1.5"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="player bg-grey radius">
+    <div class="playbar bg-grey radius">
+      <div class="songinfo"></div>
+      <div class="songbuttons">
+        <img src="img/prevsong.svg" alt="" class="invert" />
+        <img src="img/play.svg" alt="" class="invert" />
+        <img src="img/nextsong.svg" alt="" class="invert" />
+      </div>
+      <div class="songtime"></div>
     </div>
-    <script src="js/script.js">
-
-    </script>
+  </div>
+  <script src="js/script.js"></script>
 </body>
 
 </html>
