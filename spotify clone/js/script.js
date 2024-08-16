@@ -1,7 +1,7 @@
 console.log("CODSE IS RUNNING");
 // checkin if Fetch is working
 
-
+let currentSong = new Audio();
 
 async function getSongs() {
     try {
@@ -16,9 +16,10 @@ async function getSongs() {
         for (let index = 0; index < as.length; index++) {
             const element = as[index];
             if (element.href.endsWith(".mp3")) {
-                songs.push(element.href)
+                songs.push(element.href.split("/songs/")[1])//.split will give text after /songs/ "http://127.0.0.1:5500/songs/Bad%20Days.mp3"
             }
         }
+        //console.log(songs);
 
         return songs;
     } catch (error) {
@@ -32,25 +33,64 @@ async function getSongs() {
 
 getSongs()// running getsongs( function)
 
+
+const playMusic = (track) => {
+    // let audio=new Audio("/songs/"+track)
+    currentSong.src = "/songs/" + track;
+    currentSong.play()
+    play.src = "img/pause.svg"
+    document.querySelector(".songinfo").innerHTML = track
+    document.querySelector(".songtime").innerHTML = "00:00 / 00:00"
+}
+
+
 async function main() {
+
+
+
     //get the list of all songs
     let songs = await getSongs()
     console.log(songs)
-    let songUL=document.querySelector(".songlist").getElementsByTagName("ul")[0]
+    //Show alla the song in the songlist
+    let songUL = document.querySelector(".songlist").getElementsByTagName("ul")[0]
     for (const song of songs) {
-        songUL.innerHTML=songUL.innerHTML + `<li> ${song}</li>`
-        
+        songUL.innerHTML = songUL.innerHTML + `<li> <img src="img/music.svg" alt="" class="invert">
+              <div class="info">
+                <div>${song.replaceAll("%20", " ")}</div>
+                <div>Song Artist</div>
+              </div>
+              <div class="playnow">
+                <span>Play Now</span>
+                <img src="img/play.svg" alt="" class="invert">
+              </div> </li>`
+
     }
-    
-    //play th efirst song
-    var audio = new Audio(songs[0])
-//    audio.play();
-    audio.addEventListener("loadeddata", () => {
-        
-        console.log(audio.duration, audio.currentSrc, audio.currentTime);
-        
-        // The duration variable now holds the duration (in seconds) of the audio clip
-      });
-      
+
+    //attach an event listener to each song
+    Array.from(document.querySelector(".songlist").getElementsByTagName("li")).forEach(e => {
+        e.addEventListener("click", element => {
+            console.log(e.querySelector(".info").firstElementChild.innerHTML);
+            playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim())//.trim remove spaces
+
+        })
+
+
+
+
+    });
+
+    //attach an event listener to previous,play,next
+    play.addEventListener("click", () => {
+        if (currentSong.paused && currentSong.src) {
+            currentSong.play();
+            play.src = "img/pause.svg"; // Change button to pause when music starts
+        } else {
+            currentSong.pause();
+            play.src = "img/play.svg"; // Change button to play when music pauses
+        }
+    });
+
+
+
 }
 main() // running main function
