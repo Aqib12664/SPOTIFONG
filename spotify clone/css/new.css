@@ -111,7 +111,8 @@ main {
 .lang {
   /* position: absolute; //does not let it staty at bottom 
   bottom: 8px; */
-  margin-top: auto; /* Pushes the button to the bottom */
+  margin-top: auto;
+  /* Pushes the button to the bottom */
 
 }
 
@@ -308,12 +309,12 @@ main {
   gap: 15px;
 }
 
-.songlist
-{
+.songlist {
   margin-bottom: 35px;
-overflow: auto;
-height: 1000px;
+  overflow: auto;
+  height: 1000px;
 }
+
 .songlist ul {
   padding: 0px 2px;
   /* margin-top: 15px; */
@@ -328,12 +329,13 @@ height: 1000px;
   /* font-size: 13px; */
   cursor: pointer;
   padding: 10px 7px;
-border-radius: 10px;
+  border-radius: 10px;
   margin: 10px 0;
   justify-content: space-between;
 
 }
-.songlist .info{
+
+.songlist .info {
   font-size: 13px;
   width: 150px;
 }
@@ -350,10 +352,13 @@ border-radius: 10px;
   padding: 12px 0px;
 
 }
+
 /* .player {
   height: 45px;
   filter: invert(1);
 } */
+
+/* PLAY BAR STARTS HERE */
 .playbar {
   /* background: #e2d9d9;
   width: 100%;
@@ -368,8 +373,9 @@ border-radius: 10px;
   align-items: center;
   position: fixed;
   bottom: 30px;
-  filter: invert(1);
-  background: #e2d9d9;
+  /* filter: invert(1);
+  background: #e2d9d9; */
+   background: #1D2626; 
   border-radius: 10px;
   width: 90%;
   padding: 12px;
@@ -377,45 +383,70 @@ border-radius: 10px;
   min-height: 40px;
 }
 
-.seekbar{
-  position: absolute;
-  bottom: 0px;
-  height: 2px;
-  width: 98%;
-  border-radius: 80px;
-  background:  black;
-  padding: 1px;
-}
-.circle{
-  width: 14px;
-  height: 14px;
-  border-radius: 35px;
-  background: black;
-  position: relative;
-  bottom: 7px;
-  left: 0%;
+#progress {
+  width: 100%;
   transition: left 0.5s;
 }
-.songbuttons
-{
+
+.seekbar {
+  position: absolute;
+  bottom: 11px;
+  height: 3px;
+  width: 99%;
+  /* border-radius: 80px; */
+  /* background: black;  */
+  padding: 3px;
+}
+
+.seekbar input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  background: linear-gradient(to right, #d400ff 0%, #d400ff 0%, #ccc 0%);
+  border-radius: 10px;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+.seekbar input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 2px #000;
+}
+
+
+/* PLAYBAR ENDS HERE */
+
+
+.songbuttons {
   cursor: pointer;
 }
-.abovebar
-{
+
+.abovebar {
   display: flex;
-    justify-content: space-between;
-    margin: 2px 0;
-    width: 100%;
+  justify-content: space-between;
+  margin: 2px 0;
+  width: 100%;
 
 }
+
 .songinfo {
   color: black;
   padding: 0 12px;
   width: 225px;
+color: white;
 }
 
 .songtime {
   width: 125px;
   color: black;
   padding: 0 12px;
+  color: white;
 }

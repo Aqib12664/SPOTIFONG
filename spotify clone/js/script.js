@@ -1,96 +1,127 @@
-console.log("CODSE IS RUNNING");
-// checkin if Fetch is working
+console.log("CODE IS RUNNING");
 
+// Define the current song in the global scope
 let currentSong = new Audio();
+
+function secondsToMinutesSeconds(seconds) {
+    if (isNaN(seconds) || seconds < 0) {
+        return "00:00";
+    }
+
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+
+    return `${formattedMinutes}:${formattedSeconds}`;
+}
+
+
 
 async function getSongs() {
     try {
-        let a = await fetch("http://127.0.0.1:5500/songs/")
-        let response = await a.text() // .text() giives contents of elements
-        // console.log(response);
-        let div = document.createElement("div")
-        div.innerHTML = response
-        let as = div.getElementsByTagName("a")//WHERE "a" is anchor tab
-        // console.log(as);
-        let songs = []
+        let a = await fetch("http://127.0.0.1:5500/songs/");
+        let response = await a.text(); // .text() giives contents of elements
+        let div = document.createElement("div");
+        div.innerHTML = response;
+        let as = div.getElementsByTagName("a");//WHERE "a" is anchor tab
+        let songs = [];
         for (let index = 0; index < as.length; index++) {
             const element = as[index];
             if (element.href.endsWith(".mp3")) {
-                songs.push(element.href.split("/songs/")[1])//.split will give text after /songs/ "http://127.0.0.1:5500/songs/Bad%20Days.mp3"
+                songs.push(element.href.split("/songs/")[1].replace(".mp3", "")); // Removing ".mp3" //.split will give text after /songs/ "http://127.0.0.1:5500/songs/Bad%20Days.mp3"here
+
             }
         }
-        //console.log(songs);
-
         return songs;
     } catch (error) {
         console.error("Error fetching songs:", error);
         return [];
-
     }
 }
 
+const playMusic = (track, pause = false) => {
+    currentSong.src = "/songs/" + track + ".mp3"; // Adding ".mp3" back when playing 
+    if (!pause) {
 
-
-getSongs()// running getsongs( function)
-
-
-const playMusic = (track) => {
-    // let audio=new Audio("/songs/"+track)
-    currentSong.src = "/songs/" + track;
-    currentSong.play()
-    play.src = "img/pause.svg"
-    document.querySelector(".songinfo").innerHTML = track
-    document.querySelector(".songtime").innerHTML = "00:00 / 00:00"
-}
-
+        currentSong.play();
+        play.src = "img/pause.svg";
+    }
+    document.querySelector(".songinfo").innerHTML = decodeURI(track);
+    document.querySelector(".songtime").innerHTML = "00:00 / 00:00";
+};
 
 async function main() {
+    // Get the list of all songs
+    let songs = await getSongs();
+    console.log(songs);
 
+    playMusic(songs[6], true)//Reay a initial music for playing when
 
-
-    //get the list of all songs
-    let songs = await getSongs()
-    console.log(songs)
-    //Show alla the song in the songlist
-    let songUL = document.querySelector(".songlist").getElementsByTagName("ul")[0]
+    // Show all the songs in the songlist
+    let songUL = document.querySelector(".songlist ul");
     for (const song of songs) {
-        songUL.innerHTML = songUL.innerHTML + `<li> <img src="img/music.svg" alt="" class="invert">
-              <div class="info">
-                <div>${song.replaceAll("%20", " ")}</div>
-                <div>Song Artist</div>
-              </div>
-              <div class="playnow">
-                <span>Play Now</span>
-                <img src="img/play.svg" alt="" class="invert">
-              </div> </li>`
-
+        songUL.innerHTML += `
+            <li>
+                <img src="img/music.svg" alt="" class="invert">
+                <div class="info">
+                    <div>${song.replaceAll("%20", " ")}</div>
+                    <div>Song Artist</div>
+                </div>
+                <div class="playnow">
+                    <span>Play Now</span>
+                    <img src="img/play.svg" alt="" class="invert">
+                </div>
+            </li>`;
     }
 
-    //attach an event listener to each song
-    Array.from(document.querySelector(".songlist").getElementsByTagName("li")).forEach(e => {
+    // Attach an event listener to each song
+    Array.from(document.querySelectorAll(".songlist li")).forEach(e => {
         e.addEventListener("click", element => {
             console.log(e.querySelector(".info").firstElementChild.innerHTML);
-            playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim())//.trim remove spaces
-
-        })
-
-
-
-
+            playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim());
+        });
     });
 
-    //attach an event listener to previous,play,next
-    play.addEventListener("click", () => {
+    // Attach an event listener to previous, play, next
+    const playButton = document.getElementById("play"); // Assuming you have an element with id="play"
+    playButton.addEventListener("click", () => {
         if (currentSong.paused && currentSong.src) {
             currentSong.play();
-            play.src = "img/pause.svg"; // Change button to pause when music starts
+            playButton.src = "img/pause.svg"; // Change button to pause when music starts
         } else {
             currentSong.pause();
-            play.src = "img/play.svg"; // Change button to play when music pauses
+            playButton.src = "img/play.svg"; // Change button to play when music pauses
         }
     });
 
+    //Listen for time update event
+
+    currentSong.addEventListener("timeupdate", () => {
+        console.log(currentSong.currentTime, currentSong.duration)
+        if (currentSong.duration) {
+            progress.max = currentSong.duration;
+            progress.value = currentSong.currentTime;
+            const percentage = (currentSong.currentTime / currentSong.duration) * 100;
+            progress.style.background = `linear-gradient(to right, #00FF00 ${percentage}%, #ccc ${percentage}%)`;
+            
+            // Update the song time display
+            // document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(currentSong.currentTime)} / ${secondsToMinutesSeconds(currentSong.duration)}`;
+            document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(currentSong.currentTime)}/${secondsToMinutesSeconds(currentSong.duration)}`
+        }
+    })
+
+// Allow user to seek by dragging the range input
+progress.addEventListener("input", (e) => {
+    currentSong.currentTime = e.target.value;
+    const percentage = (e.target.value / currentSong.duration) * 100;
+    progress.style.background = `linear-gradient(to right, #00FF00 ${percentage}%, #ccc ${percentage}%)`;
+});
 
 
 }
-main() // running main function
+
+
+main(); // Running main function
+
