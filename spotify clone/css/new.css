@@ -17,7 +17,7 @@ body {
   height: 100vh;
   width: 100vw;
   padding: 10px;
-  gap: 10px;
+  /* gap: 10px; */
 }
 
 main {
@@ -32,7 +32,7 @@ main {
   flex-direction: column;
   width: 35vw;
   min-height: 0;
-  gap: 10px;
+  gap: 10px;  background-color: #000;
 }
 
 .right {
@@ -45,6 +45,15 @@ main {
 /* Navigation */
 .home {
   padding: 20px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  width: 35px;
+  display: none;
+  margin-right: 5px;
 }
 
 .logo {
@@ -62,6 +71,7 @@ main {
   font-size: 16px;
   transition: 0.4s ease-in-out;
   color: #b3aaaa;
+
 }
 
 .home ul li:hover {
@@ -73,7 +83,7 @@ main {
 .library {
   border: 1px solid white;
   flex: 1;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -163,11 +173,20 @@ main {
 .arrow {
   display: flex;
   gap: 18px;
+  align-items: center;
+  justify-content: center;
 }
 
 .arrow svg:hover {
   transform: scale(1.09);
 }
+
+.hamburger {
+  display: none;
+  width: 40px;
+}
+
+
 
 .buttons {
   display: flex;
@@ -311,8 +330,8 @@ main {
 
 .songlist {
   margin-bottom: 35px;
-  overflow: auto;
-  height: 1000px;
+  overflow:auto;
+  height: 50vh;
 }
 
 .songlist ul {
@@ -369,33 +388,32 @@ main {
   flex-direction: column;
   position: fixed; */
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   position: fixed;
   bottom: 30px;
   /* filter: invert(1);
   background: #e2d9d9; */
-   background: #1D2626; 
-  border-radius: 10px;
-  width: 90%;
+  background: #1D2626;
   padding: 12px;
   width: 70vw;
+  border-radius: 15px;
   min-height: 40px;
 }
 
 #progress {
   width: 100%;
   transition: left 0.5s;
+  cursor: pointer;
 }
 
 .seekbar {
   position: absolute;
-  bottom: 11px;
-  height: 3px;
+  bottom: 18px;
+  height: 0px;
   width: 99%;
-  /* border-radius: 80px; */
-  /* background: black;  */
-  padding: 3px;
+
+
 }
 
 .seekbar input[type="range"] {
@@ -421,7 +439,6 @@ main {
   box-shadow: 0 0 2px #000;
 }
 
-
 /* PLAYBAR ENDS HERE */
 
 
@@ -434,6 +451,7 @@ main {
   justify-content: space-between;
   margin: 2px 0;
   width: 100%;
+  padding-bottom: 5px;
 
 }
 
@@ -441,7 +459,7 @@ main {
   color: black;
   padding: 0 12px;
   width: 225px;
-color: white;
+  color: white;
 }
 
 .songtime {
@@ -449,4 +467,51 @@ color: white;
   color: black;
   padding: 0 12px;
   color: white;
+}
+
+
+
+
+/* MEDIA QUERRIES */
+@media (max-width: 1133px) {
+  .playbar {
+    width: 62dvw;
+  }
+}
+
+
+@media (max-width:800px) {
+  .header {
+    position: static;
+  }
+  .lang{
+    display: none;
+  }
+
+  .left {
+    position: absolute;
+    left: -110%;
+    transition: all 0.3;
+    width: 270px;
+    z-index: 21;
+    background-color: #000;
+    transition: all 1.5s;
+  }
+
+  .playbar {
+    width: 94vw;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .close {
+    display: block;
+  
+  }
+
+  .songlist {
+    min-height: 40vh !important; 
+  }
 }

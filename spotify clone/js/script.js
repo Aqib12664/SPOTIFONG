@@ -53,11 +53,14 @@ const playMusic = (track, pause = false) => {
 };
 
 async function main() {
+
+
+
     // Get the list of all songs
     let songs = await getSongs();
     console.log(songs);
 
-    playMusic(songs[6], true)//Reay a initial music for playing when
+    playMusic(songs[6], true)//Play a initial music for playing when
 
     // Show all the songs in the songlist
     let songUL = document.querySelector(".songlist ul");
@@ -105,19 +108,31 @@ async function main() {
             progress.value = currentSong.currentTime;
             const percentage = (currentSong.currentTime / currentSong.duration) * 100;
             progress.style.background = `linear-gradient(to right, #00FF00 ${percentage}%, #ccc ${percentage}%)`;
-            
+
             // Update the song time display
-            // document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(currentSong.currentTime)} / ${secondsToMinutesSeconds(currentSong.duration)}`;
             document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(currentSong.currentTime)}/${secondsToMinutesSeconds(currentSong.duration)}`
         }
     })
 
-// Allow user to seek by dragging the range input
-progress.addEventListener("input", (e) => {
-    currentSong.currentTime = e.target.value;
-    const percentage = (e.target.value / currentSong.duration) * 100;
-    progress.style.background = `linear-gradient(to right, #00FF00 ${percentage}%, #ccc ${percentage}%)`;
-});
+    // Allow user to seek by dragging the range input
+    progress.addEventListener("input", (e) => {
+        currentSong.currentTime = e.target.value;
+        const percentage = (e.target.value / currentSong.duration) * 100;
+        progress.style.background = `linear-gradient(to right, #00FF00 ${percentage}%, #ccc ${percentage}%)`;
+    });
+
+    //Add an event listener for Hamburger btn
+    document.querySelector(".hamburger").addEventListener("click",()=>{
+        document.querySelector(".left").style.left="0"
+
+    })
+        //Add an event listener for  close btn
+    document.querySelector(".close").addEventListener("click",()=>{
+        document.querySelector(".left").style.left="-110%"
+
+    })
+
+
 
 
 }
