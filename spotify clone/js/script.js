@@ -2,21 +2,7 @@ console.log("CODE IS RUNNING");
 
 // Define the current song in the global scope
 let currentSong = new Audio();
-
-function secondsToMinutesSeconds(seconds) {
-    if (isNaN(seconds) || seconds < 0) {
-        return "00:00";
-    }
-
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = Math.floor(seconds % 60);
-
-    const formattedMinutes = String(minutes).padStart(2, '0');
-    const formattedSeconds = String(remainingSeconds).padStart(2, '0');
-
-    return `${formattedMinutes}:${formattedSeconds}`;
-}
-
+let songs
 
 
 async function getSongs() {
@@ -52,12 +38,29 @@ const playMusic = (track, pause = false) => {
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00";
 };
 
+
+
+
+
+function secondsToMinutesSeconds(seconds) {
+    if (isNaN(seconds) || seconds < 0) {
+        return "00:00";
+    }
+
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+
+    return `${formattedMinutes}:${formattedSeconds}`;
+}
+
+
+
 async function main() {
-
-
-
     // Get the list of all songs
-    let songs = await getSongs();
+    songs = await getSongs();
     console.log(songs);
 
     playMusic(songs[6], true)//Play a initial music for playing when
@@ -88,7 +91,7 @@ async function main() {
     });
 
     // Attach an event listener to previous, play, next
-    const playButton = document.getElementById("play"); // Assuming you have an element with id="play"
+    const playButton = document.getElementById("play"); // Assuming you have element id="play"
     playButton.addEventListener("click", () => {
         if (currentSong.paused && currentSong.src) {
             currentSong.play();
@@ -98,21 +101,45 @@ async function main() {
             playButton.src = "img/play.svg"; // Change button to play when music pauses
         }
     });
+    //EVENT LISTENER FOR PREVIOUS 
+    const previousButton = document.getElementById("previous");
+    previousButton.addEventListener("click", () => {
+        console.log("previous clicked")
+        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0].replace(".mp3", ""));
+        // console.log(songs, index)
+        if (index - 1 >= 0) {
+
+            playMusic(songs[index - 1])
+        }
+
+    })
+
+    //EVENT LISTENER FOR  NEXT BUTTON
+    const nextButton = document.getElementById("next");
+    nextButton.addEventListener("click", () => {
+        console.log("next clicked")
+        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0].replace(".mp3", ""));
+        // console.log(songs, index)
+        if (index + 1 < songs.length) {
+
+            playMusic(songs[index + 1])
+        }
+
+    })
 
     //Listen for time update event
-
     currentSong.addEventListener("timeupdate", () => {
-        console.log(currentSong.currentTime, currentSong.duration)
+        //  console.log(currentSong.currentTime, currentSong.duration)
         if (currentSong.duration) {
             progress.max = currentSong.duration;
             progress.value = currentSong.currentTime;
             const percentage = (currentSong.currentTime / currentSong.duration) * 100;
             progress.style.background = `linear-gradient(to right, #00FF00 ${percentage}%, #ccc ${percentage}%)`;
-
-            // Update the song time display
-            document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(currentSong.currentTime)}/${secondsToMinutesSeconds(currentSong.duration)}`
         }
+        // Update the song time display
+        document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(currentSong.currentTime)} / ${secondsToMinutesSeconds(currentSong.duration)}`
     })
+
 
     // Allow user to seek by dragging the range input
     progress.addEventListener("input", (e) => {
@@ -121,22 +148,18 @@ async function main() {
         progress.style.background = `linear-gradient(to right, #00FF00 ${percentage}%, #ccc ${percentage}%)`;
     });
 
-    //Add an event listener for Hamburger btn
-    document.querySelector(".hamburger").addEventListener("click",()=>{
-        document.querySelector(".left").style.left="0"
-
-    })
-        //Add an event listener for  close btn
-    document.querySelector(".close").addEventListener("click",()=>{
-        document.querySelector(".left").style.left="-110%"
-
-    })
-
-
-
-
 }
 
+//Add an event listener for Hamburger btn
+document.querySelector(".hamburger").addEventListener("click", () => {
+    document.querySelector(".left").style.left = "0"
+
+})
+//Add an event listener for  close btn
+document.querySelector(".close").addEventListener("click", () => {
+    document.querySelector(".left").style.left = "-120%"
+
+})
 
 main(); // Running main function
 

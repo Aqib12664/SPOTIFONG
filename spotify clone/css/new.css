@@ -17,8 +17,10 @@ body {
   height: 100vh;
   width: 100vw;
   padding: 10px;
+
   /* gap: 10px; */
 }
+
 
 main {
   display: flex;
@@ -239,6 +241,7 @@ main {
   font-style: normal;
   font-weight: 800;
   font-family: "Times New Roman", Times, serif;
+  cursor: pointer;
 }
 
 .playlist h1:hover {
@@ -398,7 +401,7 @@ main {
 }
 
 #progress {
-  width: 99%;
+  width: 100%;
   transition: left 0.5s;
   cursor: pointer;
 }
@@ -407,7 +410,7 @@ main {
   position: absolute;
   bottom: 20px;
   height: 0px;
-  width: 100%;
+  width: 98%;
 
 
 }
@@ -439,11 +442,11 @@ main {
 .seekbar input[type="range"]::-webkit-slider-thumb:hover {
   -webkit-appearance: none;
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   background: #ffffff;
   border: 2px solid #ffffff;
-  border-radius: 50%;
+  border-radius: 35%;
   cursor: pointer;
   box-shadow: 0 0 2px #000000;
 }
@@ -502,17 +505,19 @@ main {
 
   .home,
   .library {
-    /* background-color: #342f2f  !important; */
+    
     width: 265px;
+  
   }
 
   .left {
     position: absolute;
-    left: -110%;
+    left: -120%;
     transition: all 0.3;
     width: 270px;
     z-index: 21;
     background-color: #000;
+    border-radius: 5px;
 
     transition: all 1.5s;
   }
@@ -559,8 +564,10 @@ main {
   }
 
   .playbar {
-    padding: 4px; 
+    padding: 4px;
     width: 89vw;
+    bottom: 12px;
+    z-index: 12;
   }
 
   .seekbar {
@@ -569,17 +576,32 @@ main {
   }
 
   .songinfo {
-    text-overflow: ellipsis;
+
     width: 200px;
     padding-top: 2px;
+    display: flex;
+    justify-content: center;
   }
-.songtime{
-  padding-bottom: 2px;
-}
+
+  .songtime {
+    padding-bottom: 2px;
+  }
+
   .card:hover .play {
     left: 220px;
     bottom: 80px;
     transform: scale(2.5);
   }
 
+  .header{
+    margin-bottom: 2px;
+
+  }
+  body{
+     padding: 6px; 
+  }
+  .arr{
+    display: none;
+
+  }
 }
