@@ -376,7 +376,7 @@ main {
 /* .player {
   height: 45px;
   filter: invert(1);
-} */
+}  */
 
 /* PLAY BAR STARTS HERE */
 .playbar {
@@ -485,6 +485,38 @@ main {
   color: white;
 }
 
+.timevol {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.volume {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.vimg {
+  position: relative;
+  cursor: pointer;
+
+}
+
+.vimg:hover #vol {
+
+  transform: scale(2);
+  opacity: 1;
+
+}
+
+#vol {
+  width: 100px;
+
+}
+
 
 
 
@@ -505,9 +537,9 @@ main {
 
   .home,
   .library {
-    
+
     width: 265px;
-  
+
   }
 
   .left {
@@ -542,15 +574,43 @@ main {
 
 }
 
+@media (max-width:640px) {
+  .playbar {
+    padding: 4px;
+    width: 89vw;
+    bottom: 12px;
+    z-index: 12;
+  }
+
+  .abovebar {
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .volume {
+    position: absolute;
+    bottom: 20px;
+    right: 12px;
+  }
+  .songinfo{
+    width: auto;
+  }
+}
+
 /*  MObile devices */
 @media (max-width:390px) {
   .cardcontainer {
     margin: 0;
-
+    align-items: center;
+    justify-content: center;
   }
 
   .card {
-    width: 305px;
+    width: 164px;
   }
 
   .abovebar {
@@ -575,12 +635,19 @@ main {
 
   }
 
+  .playlist {
+    gap: 26px;
+    padding: 15px;
+  }
+
   .songinfo {
 
     width: 200px;
     padding-top: 2px;
     display: flex;
     justify-content: center;
+
+
   }
 
   .songtime {
@@ -588,20 +655,28 @@ main {
   }
 
   .card:hover .play {
-    left: 220px;
-    bottom: 80px;
-    transform: scale(2.5);
+    bottom: 100px;
+    left: 110px;
+    transform: scale(1.7);
+
   }
 
-  .header{
+  .header {
     margin-bottom: 2px;
 
   }
-  body{
-     padding: 6px; 
+
+  body {
+    padding: 6px;
   }
-  .arr{
+
+  .arr {
     display: none;
 
   }
+
+  .volume {
+    display: none;
+  }
+
 }

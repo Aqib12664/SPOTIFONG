@@ -2,8 +2,9 @@ console.log("CODE IS RUNNING");
 
 // Define the current song in the global scope
 let currentSong = new Audio();
-let songs
-
+let songs;
+let isMuted = false; // Track the mute state
+let lastVolume = 1; // Track the last volume level before muting
 
 async function getSongs() {
     try {
@@ -61,7 +62,7 @@ function secondsToMinutesSeconds(seconds) {
 async function main() {
     // Get the list of all songs
     songs = await getSongs();
-    console.log(songs);
+    // console.log(songs);
 
     playMusic(songs[6], true)//Play a initial music for playing when
 
@@ -85,7 +86,7 @@ async function main() {
     // Attach an event listener to each song
     Array.from(document.querySelectorAll(".songlist li")).forEach(e => {
         e.addEventListener("click", element => {
-            console.log(e.querySelector(".info").firstElementChild.innerHTML);
+            // console.log(e.querySelector(".info").firstElementChild.innerHTML);
             playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim());
         });
     });
@@ -104,7 +105,7 @@ async function main() {
     //EVENT LISTENER FOR PREVIOUS 
     const previousButton = document.getElementById("previous");
     previousButton.addEventListener("click", () => {
-        console.log("previous clicked")
+        // console.log("previous clicked")
         let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0].replace(".mp3", ""));
         // console.log(songs, index)
         if (index - 1 >= 0) {
@@ -117,7 +118,7 @@ async function main() {
     //EVENT LISTENER FOR  NEXT BUTTON
     const nextButton = document.getElementById("next");
     nextButton.addEventListener("click", () => {
-        console.log("next clicked")
+        // console.log("next clicked")
         let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0].replace(".mp3", ""));
         // console.log(songs, index)
         if (index + 1 < songs.length) {
@@ -160,6 +161,41 @@ document.querySelector(".close").addEventListener("click", () => {
     document.querySelector(".left").style.left = "-120%"
 
 })
+// Add an event to volume
+// Define and use volumeInput
+const volumeInput = document.querySelector(".volume input");
+volumeInput.addEventListener("input", (e) => {
+    const volume = parseInt(e.target.value) / 100;
+    if (volume === 0) {
+        currentSong.volume = 0;
+        isMuted = true;
+        volimg.src = "img/mute.svg";
+    } else {
+        currentSong.volume = volume;
+        lastVolume = volume; // Save the last volume level
+        isMuted = false;
+        volimg.src = "img/volume.svg";
+    }
+});
+
+// Add mute/unmute functionality
+const volimg = document.getElementById("volimg");
+volimg.addEventListener("click", () => {
+    if (isMuted) {
+        // Unmute
+        currentSong.volume = lastVolume; // Restore the last volume level
+        volumeInput.value = lastVolume * 100; // Update the slider
+        volimg.src = "img/volume.svg";
+    } else {
+        // Mute
+        currentSong.volume = 0;
+        volumeInput.value = 0; // Set slider to zero
+        volimg.src = "img/mute.svg";
+    }
+    isMuted = !isMuted; // Toggle mute state
+});
+
+
 
 main(); // Running main function
 
